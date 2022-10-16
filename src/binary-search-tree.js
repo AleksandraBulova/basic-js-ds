@@ -12,8 +12,8 @@ class BinarySearchTree {
     this.ROOT = null
   }
 
-  root(node = this.ROOT) {
-    return node
+  root() {
+    return this.ROOT
   }
 
   add(data) {
@@ -69,17 +69,19 @@ class BinarySearchTree {
           return null
         }
         if(node.right === null) {
-          return node = node.left
+          node = node.left
+          return node 
         }
         if(node.left === null) {
-          return node = node.right
+          node = node.right
+          return node
         }
         let maxLeft = node.left
-        while(maxLeft.right){
+        for(maxLeft;  maxLeft.right !== null; ) {
           maxLeft = maxLeft.right
         }
         node.data = maxLeft.data
-        node.left = removeNode(node.left, node.data)
+        node.left = removeNode( node.left, node.data)
       }
       if(node.data < data) {
         node.right = removeNode(node.right, data)
@@ -95,14 +97,14 @@ class BinarySearchTree {
   }
 
   min(node = this.ROOT) {
-    while(node.left !== null){
+    for(node;  node.left !== null; ) {
       node = node.left
     }
     return node.data
   }
 
   max(node = this.ROOT) {
-    while(node.right !== null){
+    for(node;  node.right !== null; ) {
       node = node.right
     }
     return node.data
